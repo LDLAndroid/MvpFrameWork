@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_nomessage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:visibility="gone"
+    android:orientation="vertical"
+    >
+
+
+        <ImageView
+            android:id="@+id/iv_nomsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             />
+
+        <TextView
+            android:id="@+id/tv_nomsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无历史优惠券"
+            android:textColor="@color/c_666666" />
+
+        <TextView
+            android:id="@+id/tv_again_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_select1"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:text=""
+            android:textColor="@color/c_f95e49"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+</LinearLayout>
