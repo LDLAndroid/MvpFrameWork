@@ -1,6 +1,7 @@
 package com.zhixun.mvptest.api;
 
 import com.zhixun.mvptest.base.BaseBean;
+import com.zhixun.mvptest.base.FwsHttpParames;
 import com.zhixun.mvptest.ui.bean.Banner;
 import com.zhixun.mvptest.ui.bean.HomeOrderData;
 import com.zhixun.mvptest.ui.bean.IsExistMsg;
@@ -8,10 +9,13 @@ import com.zhixun.mvptest.ui.bean.LimitBean;
 import com.zhixun.mvptest.ui.bean.LoanUse;
 import com.zhixun.mvptest.ui.bean.Marquee;
 
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -36,23 +40,13 @@ public interface ApiService {
     /**
      * 首页列表数据
      *
-     * @param applyDaysStart 借款申请期限开始
-     * @param applyDaysEnd   借款申请期限结束
-     * @param limit          分页多少行
-     * @param page           分页起始页
-     * @param sort           0 默认排序 1期限从短到长 2期限从长到短 3利率从高到低 4 利率从低到高
-     * @param yearRateStart  利率开始
-     * @param yearRateEnd    利率结束
      */
     @GET("order/queryOrderList")
     Observable<HomeOrderData> queryOrderList(@Header("sign") String sign, @Header("reqTime") String reqTime, @Header("accessKey") String accessKey,
-                                             @Query("applyDaysStart") int applyDaysStart, @Query("applyDaysEnd") int applyDaysEnd, @Query("limit") int limit,
-                                             @Query("page") int page, @Query("sort") int sort, @Query("yearRateStart") Number yearRateStart,
-                                             @Query("yearRateEnd") Number yearRateEnd);
+                                             @QueryMap FwsHttpParames parames);
 
     /**
      * 轮播图
-     *
      * @param sign
      * @param reqTime
      * @param accessKey
@@ -84,6 +78,7 @@ public interface ApiService {
      * @param accessKey
      * @return
      */
+    @FormUrlEncoded
     @POST("order/marquee")
     Observable<Marquee> marquee(@Header("sign") String sign, @Header("reqTime") String reqTime, @Header("accessKey") String accessKey);
 

@@ -4,11 +4,31 @@
     <style name="AppTheme" parent="QMUI.Compat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowDisablePreview">true</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
     </style>
 
+    <style name="MyDialogStyleTop" parent="android:Theme.Dialog">
+        <!-- <item name="android:windowAnimationStyle">@style/AnimTop2</item> -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+       <item name="android:windowAnimationStyle">@style/dialog_anim</item>
+    </style>
+    <style name="dialog_anim" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_exit</item>
+    </style>
     <!-- 自定义Dialog -->
     <style name="MNCustomProgressDialog" parent="@android:style/Theme.Dialog">
         <!-- 无边框 -->
@@ -85,4 +105,5 @@
     <declare-styleable name="RoundCornerImageView">
         <attr name="corner_size" format="integer" />
     </declare-styleable>
+
 </resources>

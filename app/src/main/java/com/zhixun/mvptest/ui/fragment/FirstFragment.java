@@ -15,6 +15,7 @@ import com.zhixun.mvptest.R;
 import com.zhixun.mvptest.adapter.QuickAdapter;
 import com.zhixun.mvptest.base.BaseFragment;
 import com.zhixun.mvptest.component.AppComponent;
+import com.zhixun.mvptest.ui.activity.ProductDetailsActivity;
 import com.zhixun.mvptest.view.ZToast;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class FirstFragment extends BaseFragment {
 
     @Override
     public void configViews() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i <35; i++) {
             dataList.add("万能recyclerview条目就大部分时间金风科技东方今典京东方积分继父回家发挥第三方很舒服还打算放松放松" + i);
         }
         quickAdapter = new QuickAdapter(R.layout.item_layout, dataList);
@@ -79,6 +80,8 @@ public class FirstFragment extends BaseFragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ZToast.makeText(getActivity(), "条目点击==" + dataList.get(position), 1000).show();
+                ProductDetailsActivity.startActivity(mContext);
+
             }
         });
         quickAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
@@ -93,7 +96,7 @@ public class FirstFragment extends BaseFragment {
             @Override
             public void onLoadMoreRequested() {
                 ZToast.makeText(getActivity(), "加载更多", 1000).show();
-                addData();
+                //addData();
 
 
             }

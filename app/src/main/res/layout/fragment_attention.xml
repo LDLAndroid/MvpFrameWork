@@ -1,61 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:apps="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dp20"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:padding="@dimen/dp20">
 
-                <LinearLayout
-                    android:orientation="vertical"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="的第十三届" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="的第十三届" />
+
+            <yanzhikai.textpath.SyncTextPathView
+                android:id="@+id/stpv_2017"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:autoStart="true"
+                app:duration="12000"
+                app:showPainter="false"
+                app:text=""
+                app:textSize="18sp" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <com.zhixun.mvptest.view.psw.CustomPasswordInputView
+                    android:id="@+id/et_password"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="100dp"
-                            android:text="的第十三届"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="100dp"
-                            android:text="的第十三届"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="的第十三届"
-                            />
-                        <Button
-                            android:id="@+id/clear"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="清除"
-                            />
-                        <com.zhixun.mvptest.view.PasswordInputView
-                            android:id="@+id/psw"
-                            android:layout_marginTop="40dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:background="@null"
-                            android:cursorVisible="false"
-                            android:inputType="number"
-                            app:passwordLength="6"
-                            android:focusable="true"
-                            android:focusableInTouchMode="true"
-                            app:borderWidth="2dp"
-                            app:passwordWidth="6dp"
-                            app:passwordColor="@color/c_333333"
-                            />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="40sp"
-                            />
-                </LinearLayout>
-        </ScrollView>
+                    android:layout_height="54dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#ffffff"
+                    android:inputType="number"
+                    app:maxCount="6"
+                    app:pwdCircleRadius="@dimen/dp10"
+                    app:devideLineColor="#dddee3"
+                    app:strokeColor="#dddee3" />
+
+                <com.zhixun.mvptest.view.psw.PasswordEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:visibility="gone"
+                    app:bgColor="@color/c_333333"
+                    app:bgSize="0dp"
+                    app:divisionLineColor="@color/c_333333"
+                    app:passwordColor="@color/c_333333"
+                    app:passwordRadius="@dimen/dp10" />
+
+                <com.zhixun.mvptest.view.psw.GridPasswordView
+                    android:id="@+id/pswView"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:gpvGridColor="#ffffff"
+                    app:gpvLineColor="@color/c_333333"
+                    app:gpvLineWidth="1dp"
+                    app:gpvPasswordLength="6"
+                    app:gpvPasswordTransformation="●"
+                    app:gpvPasswordType="numberPassword"
+                    app:gpvTextColor="@color/c_333333"
+                    app:gpvTextSize="30sp" />
+
+                <com.zhixun.mvptest.view.psw.PasswordInputView
+                    android:id="@+id/passwordInputView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:cursorVisible="false"
+                    android:focusable="true"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    app:dividerWidth="0.5dp"
+                    app:pivBorderColor="@color/black"
+                    app:pivBorderRadius="2dp"
+                    app:pivBorderWidth="1dp"
+                    app:pivPasswordColor="@color/black"
+                    app:pivPasswordLength="6"
+                    app:pivPasswordRadius="@dimen/dp15" />
+            </LinearLayout>
+
+            <com.ethanco.lib.PasswordInput
+                android:id="@+id/passwordInput_first"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:focusableInTouchMode="true"
+                android:layout_marginTop="@dimen/dp40"
+                app:boxCount="6"
+                app:focusedColor="@color/black"
+                app:notFocusedColor="@color/black" />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

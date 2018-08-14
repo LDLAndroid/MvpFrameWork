@@ -25,6 +25,7 @@ import com.zhixun.mvptest.module.ApiModule;
 import com.zhixun.mvptest.module.AppModule;
 import com.zhixun.mvptest.view.FFRefreshHeader;
 
+import lombok.Lombok;
 
 
 /**

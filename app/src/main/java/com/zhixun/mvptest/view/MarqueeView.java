@@ -52,7 +52,7 @@ public class MarqueeView extends ViewFlipper{
     @AnimRes
     private int inAnimResId = R.anim.anim_bottom_in;
     @AnimRes
-    private int outAnimResId = R.anim.anim_top_out;
+    private int outAnimResId = R.anim.anim_exit;
 
     private int position;
     private List<? extends CharSequence> notices = new ArrayList<>();
@@ -95,10 +95,10 @@ public class MarqueeView extends ViewFlipper{
             switch (direction) {
                 case DIRECTION_BOTTOM_TO_TOP:
                     inAnimResId = R.anim.anim_bottom_in;
-                    outAnimResId = R.anim.anim_top_out;
+                    outAnimResId = R.anim.anim_exit;
                     break;
                 case DIRECTION_TOP_TO_BOTTOM:
-                    inAnimResId = R.anim.anim_top_in;
+                    inAnimResId = R.anim.anim_enter;
                     outAnimResId = R.anim.anim_bottom_out;
                     break;
                 case DIRECTION_RIGHT_TO_LEFT:
@@ -112,7 +112,7 @@ public class MarqueeView extends ViewFlipper{
             }
         } else {
             inAnimResId = R.anim.anim_bottom_in;
-            outAnimResId = R.anim.anim_top_out;
+            outAnimResId = R.anim.anim_exit;
         }
 
         typedArray.recycle();

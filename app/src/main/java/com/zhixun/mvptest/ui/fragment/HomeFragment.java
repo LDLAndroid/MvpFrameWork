@@ -29,9 +29,11 @@ import com.zhixun.mvptest.base.BaseBean;
 import com.zhixun.mvptest.base.BaseRVFragment;
 import com.zhixun.mvptest.component.AppComponent;
 import com.zhixun.mvptest.component.DaggerMainComponent;
+import com.zhixun.mvptest.dialog.WarnDialog;
 import com.zhixun.mvptest.mvp.Contract.HomeContract;
 import com.zhixun.mvptest.mvp.presenter.HomePresenter;
 import com.zhixun.mvptest.ui.activity.FirstActivity;
+import com.zhixun.mvptest.ui.activity.TestActivity;
 import com.zhixun.mvptest.ui.anim.SlideInRightAnimation;
 import com.zhixun.mvptest.ui.bean.Announcement;
 import com.zhixun.mvptest.ui.bean.AnnouncementData;
@@ -202,6 +204,7 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
     private void initRefresh() {
         //代码设置刷新的高度
         refreshLayout.setFooterHeight(40);
+        refreshLayout.setEnableOverScrollDrag(false);
         refreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -216,23 +219,10 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
             public void onLoadmore(RefreshLayout refreshlayout) {
                 page++;
                 requestApi();
+                refreshlayout.setEnablePureScrollMode(true);
             }
         });
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        //mPresenter.isExistPushInfo(userId);
-        //每天只领取一次优惠券
-//        String time = SpUtils.getTime(mContext);
-//        currentTime = TimeUtils.getTime2(new Date());
-//        if (time.equals("") || !time.equals(currentTime)) {
-//            mPresenter.receiveCoupon(userId);
-//            mPresenter.queryAppUseParam();
-//        }
-    }
-
     private void initRecyclerview() {
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         llm.setSmoothScrollbarEnabled(true);
@@ -417,7 +407,8 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
     public void onItemClick(String orderId) {
         //条目点击  进入详情
         //ProductDetailsActivity.startActivity(mContext, orderId);
-        FirstActivity.startActivity(mContext);
+        TestActivity.startActivity(mContext);
+       // new WarnDialog(mContext,"请先进行基础认证","放弃","去认证").show();
     }
 
 
@@ -462,6 +453,7 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
                 if (page == 1) {
                     if (homeOrderData.getData().size() < 10) {
                         refreshLayout.setEnableLoadmore(false);
+                        refreshLayout.setEnableOverScrollBounce(false);
                     } else {
                         refreshLayout.setEnableLoadmore(true);
                     }

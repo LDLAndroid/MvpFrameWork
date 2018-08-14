@@ -97,7 +97,7 @@ public class Api {
         parames.put("yearRateEnd", yearRateEnd);
         String time = TimeUtils.getSingTime(new Date());
         String sign = CommonUtils.generateSign(parames, time);
-        return apiService.queryOrderList(sign, time, Constant.accessKey, applyDaysStart, applyDaysEnd, limit, page, sort, yearRateStart, yearRateEnd);
+        return apiService.queryOrderList(sign, time, Constant.accessKey,parames);
     }
 
     /**

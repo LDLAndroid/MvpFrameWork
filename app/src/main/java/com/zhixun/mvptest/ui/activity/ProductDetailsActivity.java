@@ -7,6 +7,8 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
@@ -15,6 +17,7 @@ import com.qmuiteam.qmui.widget.popup.QMUIPopup;
 import com.zhixun.mvptest.R;
 import com.zhixun.mvptest.base.BaseActivity;
 import com.zhixun.mvptest.component.AppComponent;
+import com.zhixun.mvptest.utils.ToastTextUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,9 +27,21 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/7/3.
  */
 
-public class ProductDetailsActivity extends BaseActivity {
+public class ProductDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
+
     @BindView(R.id.tvtvt)
     Button tvtvt;
+    @BindView(R.id.tv_dialog)
+    Button tvDialog;
+    @BindView(R.id.cb_eat)
+    CheckBox cbEat;
+    @BindView(R.id.cb_sleep)
+    CheckBox cbSleep;
+    @BindView(R.id.cb_water)
+    CheckBox cbWater;
+    private int eat = 0;
+    private int sleep = 0;
+    private int water = 0;
 
     @Override
     public int getLayoutId() {
@@ -45,7 +60,13 @@ public class ProductDetailsActivity extends BaseActivity {
 
     @Override
     protected void innitData() {
+        setListener();
+    }
 
+    private void setListener() {
+        cbEat.setOnCheckedChangeListener(this);
+        cbSleep.setOnCheckedChangeListener(this);
+        cbWater.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -59,9 +80,9 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tvtvt,R.id.dialog})
+    @OnClick({R.id.tvtvt, R.id.tv_dialog})
     public void onViewClicked(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tvtvt:
                 QMUIPopup qmuiPopup = new QMUIPopup(this, QMUIPopup.DIRECTION_TOP);
                 TextView textView = new TextView(this);
@@ -79,11 +100,35 @@ public class ProductDetailsActivity extends BaseActivity {
                 qmuiPopup.setPreferredDirection(QMUIPopup.ANIM_GROW_FROM_LEFT);//设置显示位置
                 qmuiPopup.show(tvtvt);//设置在哪个控件上显示QMUIpopup
                 break;
-            case R.id.dialog:
-
+            case R.id.tv_dialog:
+                System.out.println("eat=" + eat + ";sleep=" + sleep + ";water=" + water);
                 break;
         }
 
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean ischecked) {
+        if (compoundButton.getId() == R.id.cb_eat) {
+            if (ischecked) {
+                eat = 1;
+            }else{
+                eat = 0;
+            }
+        }
+        if (compoundButton.getId() == R.id.cb_sleep) {
+            if(ischecked){
+                sleep = 1;
+            }else{
+                sleep = 0;
+            }
+        }
+        if (compoundButton.getId() == R.id.cb_water) {
+            if(ischecked){
+                water = 1;
+            }else{
+                water = 0;
+            }
+        }
+    }
 }

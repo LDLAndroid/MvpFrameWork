@@ -1,11 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Passwordinputview">
-        <attr name="passwordLength" format="integer"/>
-        <attr name="borderWidth" format="dimension"/>
-        <attr name="borderRadius" format="dimension"/>
-        <attr name="borderColor" format="color"/>
-        <attr name="passwordWidth" format="dimension"/>
-        <attr name="passwordColor" format="color"/>
+
+    <!-- 授权密码输入框 -->
+    <declare-styleable name="CustomPasswordInputView">
+        <attr name="maxCount" format="integer" />
+        <attr name="pwdcircleColor" format="color" />
+        <attr name="pwdCircleRadius" format="dimension" />
+        <attr name="strokeColor" format="color" />
+        <attr name="devideLineColor" format="color" />
+
+        <attr name="divideLineWidth" format="dimension" />
+        <attr name="divideLineColor" format="color" />
+        <attr name="rectAngle" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="PasswordEditText">
+        <!-- 密码的个数 -->
+        <attr name="passwordNumber" format="integer" />
+        <!-- 密码圆点的半径 -->
+        <attr name="passwordRadius" format="dimension" />
+        <!-- 密码圆点的颜色 -->
+        <attr name="passwordColor" format="color" />
+        <!-- 分割线的颜色 -->
+        <attr name="divisionLineColor" format="color" />
+        <!-- 分割线的大小 -->
+        <attr name="divisionLineSize" format="color" />
+        <!-- 背景边框的颜色 -->
+        <attr name="bgColor" format="color" />
+        <!-- 背景边框的大小 -->
+        <attr name="bgSize" format="dimension" />
+        <!-- 背景边框的圆角大小 -->
+        <attr name="bgCorner" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PasswordInputView">
+        <attr name="pivBorderColor" format="color" />
+        <attr name="pivBorderWidth" format="dimension" />
+        <attr name="pivBorderRadius" format="dimension" />
+        <attr name="pivPasswordColor" format="color" />
+        <attr name="pivPasswordWidth" format="dimension" />
+        <attr name="pivPasswordRadius" format="dimension" />
+        <attr name="pivPasswordLength" format="integer" />
+        <attr name="dividerWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomCircleView">
+        <attr name="titleText" format="string" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="backColor" format="color" />
+        <attr name="titleTextSize" format="dimension" />
+    </declare-styleable>
+
 </resources>

@@ -1,14 +1,20 @@
 package com.zhixun.mvptest.ui.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.qmuiteam.qmui.util.QMUIDisplayHelper;
-import com.qmuiteam.qmui.widget.QMUITabSegment;
 import com.zhixun.mvptest.R;
 import com.zhixun.mvptest.base.BaseFragment;
 import com.zhixun.mvptest.component.AppComponent;
+import com.zhixun.mvptest.view.psw.GridPasswordView;
 
-import java.io.Serializable;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import yanzhikai.textpath.SyncTextPathView;
 
 /**
  * Created by Administrator on 2018/6/25.
@@ -16,12 +22,20 @@ import java.io.Serializable;
 
 public class SecondFragment extends BaseFragment {
 
+    @BindView(R.id.clear)
+    Button clear;
+    @BindView(R.id.stpv_2017)
+    SyncTextPathView stpv2017;
+    @BindView(R.id.pswView)
+    GridPasswordView pswView;
+
     public static SecondFragment newInstance() {
         Bundle args = new Bundle();
         SecondFragment fragment = new SecondFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected void lazyLoad() {
 
@@ -39,7 +53,6 @@ public class SecondFragment extends BaseFragment {
 
     @Override
     public void configViews() {
-
     }
 
     @Override
@@ -51,4 +64,6 @@ public class SecondFragment extends BaseFragment {
     protected void setupActivityComponent(AppComponent appComponent) {
 
     }
+
+
 }

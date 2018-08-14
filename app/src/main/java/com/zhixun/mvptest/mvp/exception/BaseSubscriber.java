@@ -36,7 +36,9 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onStart() {
-        loadingDialog.show();
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
         super.onStart();
         Log.i("tag", "BaseSubscriber.onStart()");
 
