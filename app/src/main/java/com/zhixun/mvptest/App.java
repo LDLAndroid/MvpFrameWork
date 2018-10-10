@@ -1,19 +1,10 @@
 package com.zhixun.mvptest;
 
 import android.app.Application;
-import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.yhao.floatwindow.FloatWindow;
 import com.yhao.floatwindow.MoveType;
 import com.yhao.floatwindow.PermissionListener;
@@ -23,9 +14,6 @@ import com.zhixun.mvptest.component.AppComponent;
 import com.zhixun.mvptest.component.DaggerAppComponent;
 import com.zhixun.mvptest.module.ApiModule;
 import com.zhixun.mvptest.module.AppModule;
-import com.zhixun.mvptest.view.FFRefreshHeader;
-
-import lombok.Lombok;
 
 
 /**

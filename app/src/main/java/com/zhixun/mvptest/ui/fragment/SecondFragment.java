@@ -13,6 +13,7 @@ import com.zhixun.mvptest.view.psw.GridPasswordView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import yanzhikai.textpath.SyncTextPathView;
 
@@ -28,6 +29,7 @@ public class SecondFragment extends BaseFragment {
     SyncTextPathView stpv2017;
     @BindView(R.id.pswView)
     GridPasswordView pswView;
+    Unbinder unbinder;
 
     public static SecondFragment newInstance() {
         Bundle args = new Bundle();
@@ -64,6 +66,14 @@ public class SecondFragment extends BaseFragment {
     protected void setupActivityComponent(AppComponent appComponent) {
 
     }
+    @OnClick({R.id.tv_back, R.id.stpv_2017})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_back:
 
-
+                break;
+            case R.id.stpv_2017:
+                break;
+        }
+    }
 }

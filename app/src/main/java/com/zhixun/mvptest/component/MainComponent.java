@@ -2,6 +2,7 @@ package com.zhixun.mvptest.component;
 
 
 import com.zhixun.mvptest.MainActivity;
+import com.zhixun.mvptest.ui.activity.ReFreshActivity;
 import com.zhixun.mvptest.ui.fragment.HomeFragment;
 import com.zhixun.mvptest.ui.fragment.ProductFragment;
 
@@ -19,4 +20,5 @@ public interface MainComponent {
 
     HomeFragment inject(HomeFragment homeFragment);
 
+    ReFreshActivity inject(ReFreshActivity activity);
 }

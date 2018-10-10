@@ -1,39 +1,49 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:Android="http://schemas.android.com/tools"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refresh_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/c_f5f5f5"
+    app:srlEnableFooterFollowWhenLoadFinished="true"
+    app:srlFooterHeight="@dimen/dp40"
+    app:srlFooterTranslationViewId="@id/recycler_view">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refresh_layout"
+
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/c_f5f5f5"
-        app:srlFooterHeight="@dimen/dp40">
+        android:layout_height="60dp" />
 
-        <com.zhixun.mvptest.view.FFRefreshHeader
-            android:layout_width="match_parent"
-            android:layout_height="60dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <com.zhixun.mvptest.view.StickHeadScrollView
-            android:id="@+id/scrollview"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:background="@color/c_f7f7f7">
 
-            <LinearLayout
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                app:elevation="0dp"
+                app:layout_behavior="com.zhixun.mvptest.view.FixAppBarLayoutBehavior">
 
-                <LinearLayout
+                <android.support.design.widget.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@color/c_f7f7f7"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="@color/c_f7f7f7"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:fitsSystemWindows="true"
+                        android:orientation="vertical">
+
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -52,15 +62,15 @@
 
                                 <RelativeLayout
                                     android:id="@+id/rl_msg"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:padding="10dp">
+                                    android:layout_width="@dimen/dp30"
+                                    android:layout_height="@dimen/dp30"
+                                    android:layout_alignParentRight="true">
 
                                     <ImageView
                                         android:id="@+id/iv_msg"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
+                                        android:layout_height="wrap_content"
+                                        android:src="@mipmap/nomsg_icon" />
                                 </RelativeLayout>
 
 
@@ -99,31 +109,34 @@
                                     android:src="@mipmap/icon_closed_gdt" />
 
                             </LinearLayout>
+
                         </FrameLayout>
 
-                        <TextView
-                            android:id="@+id/tv_top_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="164dp"
-                            android:background="#00000000"
-                            android:gravity="center"
-                            android:textSize="17sp" />
-                    </FrameLayout>
+                        <!--<include layout="@layout/layout_myinfo" />-->
+                    </LinearLayout>
 
-                    <include layout="@layout/payment_layout" />
-                </LinearLayout>
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                </android.support.design.widget.CollapsingToolbarLayout>
 
                 <RelativeLayout
                     android:id="@+id/ll_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/c_f7f7f7"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="exitUntilCollapsed|enterAlways|enterAlwaysCollapsed">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
                         android:text="TA们正在借钱"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -134,6 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toLeftOf="@+id/ll_filter"
+                        android:clickable="true"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -157,6 +171,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginLeft="10dp"
+                        android:clickable="true"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -176,49 +191,57 @@
 
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginLeft="@dimen/dp20"
-                    android:layout_marginRight="@dimen/dp20"
-                    android:background="@color/line" />
 
+            </android.support.design.widget.AppBarLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll_rlv"
+            <LinearLayout
+                android:id="@+id/ll_rlv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_marginTop="-4dp"
+                    android:visibility="gone" />
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                <android.support.v4.widget.NestedScrollView
+                    android:fillViewport="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <include layout="@layout/nomessage_layout" />
-                </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
 
 
             </LinearLayout>
 
-        </com.zhixun.mvptest.view.StickHeadScrollView>
+        </android.support.design.widget.CoordinatorLayout>
 
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <com.zhixun.mvptest.view.MarqueeView
+            android:id="@+id/marqueeView"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dp17"
+            android:layout_marginTop="5dp"
+            app:mvAnimDuration="2000"
+            app:mvDirection="bottom_to_top"
+            app:mvInterval="5000"
+            app:mvSingleLine="true"
+            app:mvTextColor="#0f0"
+            app:mvTextSize="18sp" />
+    </RelativeLayout>
 
-    <com.zhixun.mvptest.view.MarqueeView
-        android:id="@+id/marqueeView"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/dp17"
-        android:layout_marginTop="5dp"
-        app:mvAnimDuration="2000"
-        app:mvDirection="bottom_to_top"
-        app:mvInterval="5000"
-        app:mvSingleLine="true"
-        app:mvTextColor="#0f0"
-        app:mvTextSize="18sp" />
-</RelativeLayout>
+
+    <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srlClassicsSpinnerStyle="Translate"
+        app:srlAccentColor="@color/c_f95e49"
+        />
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

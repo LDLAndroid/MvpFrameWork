@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/black_shape"
+        android:weightSum="7">
+        <TextView
+            android:id="@+id/tv_day_count"
+            android:layout_width="0dp"
+            android:layout_margin="1px"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp15"
+            android:paddingTop="@dimen/dp15"
+            android:layout_weight="4"
+            android:textSize="15sp"
+            android:textColor="@color/c_333333"
+            android:gravity="center_horizontal"
+            android:text="截止实际还款日逾期天数" />
+
+        <View
+            android:layout_width="2px"
+            android:layout_height="match_parent"
+            android:background="@color/c_e4e5ed" />
+
+        <TextView
+            android:id="@+id/tv_seller_money"
+            android:layout_width="0dp"
+            android:layout_margin="1px"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp15"
+            android:paddingTop="@dimen/dp15"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/c_333333"
+            android:text="催收手续费" />
+
+    </LinearLayout>
+</LinearLayout>

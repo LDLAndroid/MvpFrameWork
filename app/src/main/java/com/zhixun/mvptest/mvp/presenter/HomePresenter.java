@@ -1,10 +1,14 @@
 package com.zhixun.mvptest.mvp.presenter;
 
 
+import android.app.Dialog;
+
+import com.zhixun.mvptest.App;
 import com.zhixun.mvptest.api.Api;
 import com.zhixun.mvptest.base.BaseBean;
 import com.zhixun.mvptest.base.Constant;
 import com.zhixun.mvptest.base.RxPresenter;
+import com.zhixun.mvptest.dialog.WarnDialog;
 import com.zhixun.mvptest.mvp.Contract.HomeContract;
 import com.zhixun.mvptest.mvp.exception.BaseSubscriber;
 import com.zhixun.mvptest.ui.bean.Banner;
@@ -13,6 +17,7 @@ import com.zhixun.mvptest.ui.bean.IsExistMsg;
 import com.zhixun.mvptest.ui.bean.LimitBean;
 import com.zhixun.mvptest.ui.bean.LoanUse;
 import com.zhixun.mvptest.ui.bean.Marquee;
+import com.zhixun.mvptest.utils.DialogUtil;
 import com.zhixun.mvptest.utils.ToastTextUtils;
 
 import javax.inject.Inject;
@@ -41,21 +46,23 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
         addSubscription(api.queryOrderList(applyDaysStart, applyDaysEnd, limit, offset, sort, yearRateStart, yearRateEnd)
                 , new BaseSubscriber<HomeOrderData>() {
 
-            @Override
-            protected void onSuccess(HomeOrderData data) {
-                mView.showqueryOrderList(data);
-            }
+                    @Override
+                    protected void onSuccess(HomeOrderData data) {
 
-            @Override
-            public void onError(String message) {
-                mView.showError(message);
-            }
+                        DialogUtil.showDialog(App.getInstance(),"全局弹出弹窗");
+                        mView.showqueryOrderList(data);
+                    }
 
-            @Override
-            public void completed() {
-                mView.complete();
-            }
-        });
+                    @Override
+                    public void onError(String message) {
+                        mView.showError(message);
+                    }
+
+                    @Override
+                    public void completed() {
+                        mView.complete();
+                    }
+                });
     }
 
     @Override
@@ -64,6 +71,7 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
 
             @Override
             protected void onSuccess(Banner data) {
+               // DialogUtil.showDialog(App.getInstance(),"全局弹出弹窗");
                 mView.showBanner(data);
             }
 
@@ -99,8 +107,6 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
             }
         });
     }
-
-
 
 
     @Override

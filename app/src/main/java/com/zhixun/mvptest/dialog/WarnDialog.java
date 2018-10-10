@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,6 +51,7 @@ public class WarnDialog extends Dialog {
         setContentView(R.layout.dialog_attention);
         ButterKnife.bind(this);
         setCanceledOnTouchOutside(false);
+        getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         if (!title.isEmpty()) {
             tvTitle.setText(title);
         } else {

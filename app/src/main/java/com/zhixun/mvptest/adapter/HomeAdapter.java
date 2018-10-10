@@ -38,11 +38,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyHolder> {
 
 
     private Context mContext;
-    private int size = 10;
     private List<HomeOrderDataList> dataList = new ArrayList<>();
 
     private int mLastPosition = -1;
-    private int mPosition = 0;
     private Interpolator mInterpolator = new LinearInterpolator();
     private int mDuration = 300;
     private BaseAnimation mSelectAnimation = new AlphaInAnimation();
@@ -63,8 +61,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyHolder> {
         if (dataList != null) {
             final HomeOrderDataList homeOrderDataList = dataList.get(position);
             if (homeOrderDataList != null) {
-//                Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "DINNextW1G-Medium.otf");
-//                holder.tvShouyi.setTypeface(typeface);
                 holder.tvName.setText(homeOrderDataList.getBorrowerUserName() + "");
                 holder.tvShouyi.setText(FormatUtils.formatStr(homeOrderDataList.getYearRate()));
                 holder.tvDashang.setText("打赏了" + FormatUtils.formatStr(homeOrderDataList.getRewardAmount()) + "元");

@@ -5,7 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/dp20">
+   >
+
+    <RelativeLayout
+        android:padding="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,9 +57,9 @@
                 android:text="清除" />
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dp40"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp40"
                 android:orientation="vertical"
                 android:visibility="visible">
 
@@ -54,13 +67,13 @@
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
-                    android:layout_marginTop="40dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="40dp"
                     android:background="#ffffff"
                     android:inputType="number"
+                    app:devideLineColor="#dddee3"
                     app:maxCount="6"
                     app:pwdCircleRadius="@dimen/dp10"
-                    app:devideLineColor="#dddee3"
                     app:strokeColor="#dddee3" />
 
                 <com.zhixun.mvptest.view.psw.PasswordEditText
@@ -75,9 +88,9 @@
 
                 <com.zhixun.mvptest.view.psw.GridPasswordView
                     android:id="@+id/pswView"
-                    android:layout_marginTop="@dimen/dp20"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp20"
                     app:gpvGridColor="#ffffff"
                     app:gpvLineColor="@color/c_333333"
                     app:gpvLineWidth="1dp"
@@ -109,8 +122,8 @@
                 android:id="@+id/passwordInput_first"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:focusableInTouchMode="true"
                 android:layout_marginTop="@dimen/dp40"
+                android:focusableInTouchMode="true"
                 app:boxCount="6"
                 app:focusedColor="@color/black"
                 app:notFocusedColor="@color/black" />

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/title_layout"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line" />
+
+        <RelativeLayout
+            android:id="@+id/rl_use_coupon"
+            android:layout_marginTop="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp15">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择支付方式"
+                android:includeFontPadding="false"
+                android:layout_centerVertical="true"
+                android:textColor="@color/c_333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_coupon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="@dimen/dp10"
+                android:layout_centerVertical="true"
+                android:drawableRight="@mipmap/pc_arrow_right"
+                android:text=""
+                android:textColor="@color/c_f95e49"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_sure"
+        android:background="@color/c_f95e49"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+</LinearLayout>

@@ -2,6 +2,7 @@ package com.zhixun.mvptest.ui.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zhixun.mvptest.R;
 import com.zhixun.mvptest.adapter.HomeAdapter;
 import com.zhixun.mvptest.adapter.HomeCarouselAdapter;
@@ -29,11 +30,12 @@ import com.zhixun.mvptest.base.BaseBean;
 import com.zhixun.mvptest.base.BaseRVFragment;
 import com.zhixun.mvptest.component.AppComponent;
 import com.zhixun.mvptest.component.DaggerMainComponent;
-import com.zhixun.mvptest.dialog.WarnDialog;
 import com.zhixun.mvptest.mvp.Contract.HomeContract;
 import com.zhixun.mvptest.mvp.presenter.HomePresenter;
+import com.zhixun.mvptest.ui.activity.BlackActivity;
+import com.zhixun.mvptest.ui.activity.DropmenuActivity;
 import com.zhixun.mvptest.ui.activity.FirstActivity;
-import com.zhixun.mvptest.ui.activity.TestActivity;
+import com.zhixun.mvptest.ui.activity.ReFreshActivity;
 import com.zhixun.mvptest.ui.anim.SlideInRightAnimation;
 import com.zhixun.mvptest.ui.bean.Announcement;
 import com.zhixun.mvptest.ui.bean.AnnouncementData;
@@ -45,8 +47,6 @@ import com.zhixun.mvptest.utils.CommonUtils;
 import com.zhixun.mvptest.utils.PopWinDownUtil;
 import com.zhixun.mvptest.view.MarqueeTextView;
 import com.zhixun.mvptest.view.MarqueeView;
-import com.zhixun.mvptest.view.StickHeadScrollView;
-import com.zhixun.mvptest.view.ZToast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -76,8 +76,6 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
     ImageView ivClose;
     @BindView(R.id.ly_tishi)
     LinearLayout lyTishi;
-    @BindView(R.id.tv_top_title)
-    TextView tvTopTitle;
     @BindView(R.id.tv_sort)
     TextView tvSort;
     @BindView(R.id.ll_sort)
@@ -102,11 +100,8 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
     LinearLayout llRlv;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout refreshLayout;
-    @BindView(R.id.scrollview)
-    StickHeadScrollView scrollview;
     @BindView(R.id.marqueeView)
     MarqueeView marqueeView;
-    Unbinder unbinder;
     private PopWinDownUtil popWinDownUtil1;
     private PopWinDownUtil popWinDownUtil2;
     private HomeAdapter homeAdapter;
@@ -149,46 +144,11 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
         initSort();
         requestApi();
         mPresenter.queryBanner(bannerType);
-        // mPresenter.marquee();
         initRefresh();
-//        userId = SpUtils.getUser(mContext).getId();
-//        mPresenter.isExistPushInfo(userId);
-        initScrollview();
-        scrollviewListener();
         mPresenter.queryAnnouncement();
     }
 
 
-    private void scrollviewListener() {
-        scrollview.setOnScrollListener(new StickHeadScrollView.OnScrollListener() {
-            int scrollY;
-
-            @Override
-            public void onScroll(int scrollY) {
-                scrollY += scrollY;
-                int maxMove = bgaBanner.getHeight() + CommonUtils.dip2px(mContext, 80);
-                renderStatusAndToolBar(scrollY / (float) maxMove);
-            }
-        });
-    }
-
-    private void renderStatusAndToolBar(float alpha) {
-
-        toolBarBgAlpha = alpha;
-        int alphaInt = (int) (alpha * 255);
-        alphaInt = alphaInt > 255 ? 255 : alphaInt;
-        tvTopTitle.getBackground().setAlpha(alphaInt);
-        tvTopTitle.setBackgroundColor(Color.argb(alphaInt, 255, 255, 255));
-    }
-
-    private void initScrollview() {
-        //避免自动滑动到底部
-        llTitle.setFocusable(true);
-        llTitle.setFocusableInTouchMode(true);
-        llTitle.requestFocus();
-        //2.set height
-        scrollview.resetHeight(llTitle, recyclerView);
-    }
 
     private void requestApi() {
         showDialog("加载中...");
@@ -204,31 +164,29 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
     private void initRefresh() {
         //代码设置刷新的高度
         refreshLayout.setFooterHeight(40);
-        refreshLayout.setEnableOverScrollDrag(false);
-        refreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                page++;
+                requestApi();
+
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 page = 1;
                 requestApi();
                 mPresenter.queryBanner(bannerType);
                 //mPresenter.isExistPushInfo(userId);
-                refreshlayout.resetNoMoreData();
-            }
-
-            @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
-                page++;
-                requestApi();
-                refreshlayout.setEnablePureScrollMode(true);
             }
         });
     }
     private void initRecyclerview() {
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
-        llm.setSmoothScrollbarEnabled(true);
-        llm.setAutoMeasureEnabled(true);
+//        llm.setSmoothScrollbarEnabled(true);
+//        llm.setAutoMeasureEnabled(true);
         recyclerView.setLayoutManager(llm);
-        recyclerView.setHasFixedSize(false);
+//        recyclerView.setHasFixedSize(false);
         homeAdapter = new HomeAdapter(mContext);
         homeAdapter.setAnimation(new SlideInRightAnimation());
         recyclerView.setAdapter(homeAdapter);
@@ -309,7 +267,6 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
                     applyDayEnd = 100;
                 }
                 page = 1;
-                refreshLayout.resetNoMoreData();
                 requestApi();
                 popWinDownUtil2.hide();
             }
@@ -323,7 +280,6 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
                 sortAdapter.changeSelected(position);
                 page = 1;
                 sort = position;
-                refreshLayout.resetNoMoreData();
                 requestApi();
                 popWinDownUtil1.hide();
             }
@@ -406,16 +362,21 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
     @Override
     public void onItemClick(String orderId) {
         //条目点击  进入详情
-        //ProductDetailsActivity.startActivity(mContext, orderId);
-        TestActivity.startActivity(mContext);
-       // new WarnDialog(mContext,"请先进行基础认证","放弃","去认证").show();
+        ReFreshActivity.startActivity(mContext);
     }
 
 
     @Override
     public void showError(String err) {
         dismissDialog();
-        // UiUtils.noNetWork(refreshLayout, recyclerView, llNomessage, ivNomsg, tvNomsg, tvAgainLoad);
+        refreshLayout.finishRefresh(1000, false);
+        recyclerView.setVisibility(View.GONE);
+        llNomessage.setVisibility(View.VISIBLE);
+        tvNomsg.setText("网络错误或服务器异常！");
+        tvAgainLoad.setVisibility(View.VISIBLE);
+        tvAgainLoad.setText("刷新");
+        refreshLayout.finishRefresh(1000, false);
+        refreshLayout.finishLoadMore(false);
     }
 
     @Override
@@ -441,21 +402,20 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
                     ivNomsg.setImageResource(R.mipmap.no_data);
                     tvAgainLoad.setVisibility(View.GONE);
                     tvNomsg.setText("暂无借款信息");
-                    refreshLayout.setEnableLoadmore(false);
+                    refreshLayout.setEnableLoadMore(true);
                 } else {
                     recyclerView.setVisibility(View.VISIBLE);
-                    refreshLayout.finishLoadmoreWithNoMoreData();
+                    refreshLayout.finishLoadMoreWithNoMoreData();
                 }
             } else {
                 recyclerView.setVisibility(View.VISIBLE);
                 llNomessage.setVisibility(View.GONE);
-                refreshLayout.finishLoadmore(1000, true);
+                refreshLayout.finishLoadMore(1000, true,false);
                 if (page == 1) {
                     if (homeOrderData.getData().size() < 10) {
-                        refreshLayout.setEnableLoadmore(false);
-                        refreshLayout.setEnableOverScrollBounce(false);
+                        refreshLayout.setEnableLoadMore(false);
                     } else {
-                        refreshLayout.setEnableLoadmore(true);
+                        refreshLayout.setEnableLoadMore(true);
                     }
                     homeAdapter.refreshData(homeOrderData.getData());
                 } else {
@@ -545,16 +505,7 @@ public class HomeFragment extends BaseRVFragment<HomePresenter> implements HomeC
 
     @Override
     public void onBannerItemClick(BGABanner banner, ImageView itemView, @Nullable String model, int position) {
-       /* String webUrl = "";
-        String httpUrl = data.get(position).getHttpUrl();
-        if (httpUrl.contains("luckdDraw")) {
-            webUrl = httpUrl + "userId=" + SpUtils.getUser(mContext).getId() + "&token=" + SpUtils.getUser(mContext).getUserToken() + "&account=" + SpUtils.getUser(mContext).getAccount();
-        } else {
-            webUrl = httpUrl;
-        }
-        if (!webUrl.isEmpty() && webUrl != null) {
-            BannerDetailActivity.startActivity(mContext, data.get(position).getTitle(), webUrl, data.get(position).getId());
-        }*/
+        BlackActivity.startActivity(mContext);
     }
 
 

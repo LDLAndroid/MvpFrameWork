@@ -2,6 +2,7 @@ package com.zhixun.mvptest.ui.fragment;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.animation.BaseAnimation;
+import com.mic.bottomsheetlib.interfaces.BottomSheetDialogInterface;
+import com.mic.bottomsheetlib.utils.BottomSheetTitleSetting;
 import com.zhixun.mvptest.R;
 import com.zhixun.mvptest.adapter.QuickAdapter;
 import com.zhixun.mvptest.base.BaseFragment;
@@ -29,12 +32,14 @@ import butterknife.Unbinder;
  * Created by Administrator on 2018/6/25.
  */
 
+@SuppressLint("ValidFragment")
 public class FirstFragment extends BaseFragment {
 
     @BindView(R.id.rlv)
     RecyclerView rlv;
     private List<String> dataList = new ArrayList<>();
     private QuickAdapter quickAdapter;
+
 
     public static FirstFragment newInstance() {
         Bundle args = new Bundle();

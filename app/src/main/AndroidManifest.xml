@@ -34,6 +34,18 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.activity.TestActivity" />
+
+        <activity
+            android:name=".ui.activity.BlackActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.DropmenuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.BannerActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.ReFreshActivity" />
     </application>
 
 </manifest>

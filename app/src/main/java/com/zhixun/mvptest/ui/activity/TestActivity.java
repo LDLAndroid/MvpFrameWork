@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/8/14.
@@ -60,10 +61,12 @@ public class TestActivity extends BaseActivity {
 
     @Override
     protected void innitData() {
+
         appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                System.out.println("*************verticalOffset**************"+verticalOffset);
+                System.out.println("*************verticalOffset**************" + verticalOffset);
+
             }
         });
     }
@@ -78,4 +81,13 @@ public class TestActivity extends BaseActivity {
         context.startActivity(i);
     }
 
+
+    @OnClick({R.id.tvtv})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tvtv:
+                appBar.setExpanded(false, true);
+                break;
+        }
+    }
 }

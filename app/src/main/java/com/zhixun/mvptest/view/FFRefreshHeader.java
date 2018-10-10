@@ -27,20 +27,6 @@ public class FFRefreshHeader extends LinearLayout implements RefreshHeader {
     private ImageView ivRefreshIc;
     private Animation animation;
 
-    @Override
-    public void onPullingDown(float percent, int offset, int headerHeight, int extendHeight) {
-
-    }
-
-    @Override
-    public void onReleasing(float percent, int offset, int headerHeight, int extendHeight) {
-
-    }
-
-    @Override
-    public void onRefreshReleased(RefreshLayout layout, int headerHeight, int extendHeight) {
-
-    }
 
     public enum HeaderTheme {
         THEME_WHITE,
@@ -98,6 +84,16 @@ public class FFRefreshHeader extends LinearLayout implements RefreshHeader {
 
     @Override
     public void onInitialized(@NonNull RefreshKernel kernel, int height, int extendHeight) {
+
+    }
+
+    @Override
+    public void onMoving(boolean isDragging, float percent, int offset, int height, int maxDragHeight) {
+
+    }
+
+    @Override
+    public void onReleased(@NonNull RefreshLayout refreshLayout, int height, int maxDragHeight) {
 
     }
 
